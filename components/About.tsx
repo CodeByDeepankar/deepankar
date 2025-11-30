@@ -3,9 +3,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Badge } from "./ui/badge";
-import { Code2, Database, Globe, Layers } from "lucide-react";
 import { CircularButton } from "./ui/circular-button";
+import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
+import { Badge } from "./ui/badge";
+import { Code2, Database, Globe, Layers, type LucideIcon } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,19 @@ const skills = {
   tools: ["Git", "Figma", "Postman", "Webpack", "Vite"],
 };
 
+type SkillCard = {
+  title: string;
+  icon: LucideIcon;
+  items: string[];
+};
+
+const skillCards: SkillCard[] = [
+  { title: "Frontend", icon: Code2, items: skills.frontend },
+  { title: "Backend", icon: Database, items: skills.backend },
+  { title: "DevOps", icon: Globe, items: skills.devops },
+  { title: "Tools", icon: Layers, items: skills.tools },
+];
+
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -50,51 +64,18 @@ export function About() {
         ease: "power3.out",
       });
 
-      const cards = gsap.utils.toArray<HTMLElement>(".skill-card");
-      cards.forEach((card, index) => {
-  const elements = card.querySelectorAll("svg, h3, .badge-wrapper");
-
-        const tl = gsap.timeline({
-          defaults: { ease: "power3.out" },
+      if (contentRef.current) {
+        gsap.from(contentRef.current, {
           scrollTrigger: {
-            trigger: card,
+            trigger: contentRef.current,
             start: "top 80%",
-            toggleActions: "play none none reverse",
           },
+          y: 60,
+          opacity: 0,
+          duration: 1.1,
+          ease: "power3.out",
         });
-
-        tl.fromTo(
-          card,
-          {
-            opacity: 0,
-            y: 90,
-            rotateX: -25,
-            scale: 0.9,
-            transformPerspective: 900,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            scale: 1,
-            duration: 0.9,
-            delay: index * 0.05,
-          }
-        );
-
-        if (elements.length) {
-          tl.from(
-            elements,
-            {
-              y: 24,
-              opacity: 0,
-              stagger: 0.05,
-              duration: 0.5,
-            },
-            "<20%"
-          );
-        }
-      });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -144,72 +125,35 @@ export function About() {
           </div>
         </div>
 
-        <div
-          ref={contentRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
-        >
-          <div className="skill-card p-5 sm:p-6 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm hover:border-white/30 transition-all duration-300">
-            <Code2 className="mb-3 sm:mb-4 text-indigo-400" size={24} />
-            <h3 className="mb-3 sm:mb-4 text-base sm:text-lg">Frontend</h3>
-            <div className="badge-wrapper flex flex-wrap gap-2">
-              {skills.frontend.map((skill, i) => (
-                <Badge
-                  key={i}
-                  variant="secondary"
-                  className="bg-white/10 text-xs sm:text-sm"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <div className="skill-card p-5 sm:p-6 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm hover:border-white/30 transition-all duration-300">
-            <Database className="mb-3 sm:mb-4 text-indigo-400" size={24} />
-            <h3 className="mb-3 sm:mb-4 text-base sm:text-lg">Backend</h3>
-            <div className="badge-wrapper flex flex-wrap gap-2">
-              {skills.backend.map((skill, i) => (
-                <Badge
-                  key={i}
-                  variant="secondary"
-                  className="bg-white/10 text-xs sm:text-sm"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <div className="skill-card p-5 sm:p-6 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm hover:border-white/30 transition-all duration-300">
-            <Globe className="mb-3 sm:mb-4 text-indigo-400" size={24} />
-            <h3 className="mb-3 sm:mb-4 text-base sm:text-lg">DevOps</h3>
-            <div className="badge-wrapper flex flex-wrap gap-2">
-              {skills.devops.map((skill, i) => (
-                <Badge
-                  key={i}
-                  variant="secondary"
-                  className="bg-white/10 text-xs sm:text-sm"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <div className="skill-card p-5 sm:p-6 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm hover:border-white/30 transition-all duration-300">
-            <Layers className="mb-3 sm:mb-4 text-indigo-400" size={24} />
-            <h3 className="mb-3 sm:mb-4 text-base sm:text-lg">Tools</h3>
-            <div className="badge-wrapper flex flex-wrap gap-2">
-              {skills.tools.map((skill, i) => (
-                <Badge
-                  key={i}
-                  variant="secondary"
-                  className="bg-white/10 text-xs sm:text-sm"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
+        <div className="mt-10 sm:mt-14">
+          <div className="rounded-3xl border border-white/10 bg-white/3 p-4 sm:p-6">
+            <InfiniteMovingCards
+              items={skillCards}
+              direction="right"
+              speed="slow"
+              className="dark:mask-[linear-gradient(to_right,transparent,rgba(255,255,255,0.9)_20%,rgba(255,255,255,0.9)_80%,transparent)]"
+              itemClassName="w-[280px] sm:w-[320px] md:w-[360px] border-none bg-transparent px-0 py-0"
+              renderItem={(card) => {
+                const Icon = card.icon;
+                return (
+                  <div className="skill-card h-full p-5 sm:p-6 border border-white/15 rounded-xl bg-[rgba(36,36,39,1)] text-white transition-all duration-300">
+                    <Icon className="mb-3 sm:mb-4 text-indigo-300" size={24} />
+                    <h3 className="mb-3 sm:mb-4 text-base sm:text-lg">{card.title}</h3>
+                    <div className="badge-wrapper flex flex-wrap gap-2 text-white">
+                      {card.items.map((skill, i) => (
+                        <Badge
+                          key={`${card.title}-${skill}-${i}`}
+                          variant="secondary"
+                          className="bg-white/20 text-white text-xs sm:text-sm"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }}
+            />
           </div>
         </div>
 

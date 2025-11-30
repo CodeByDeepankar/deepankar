@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
@@ -114,6 +114,55 @@ export function Work() {
   const shouldUsePreview = () =>
     typeof window !== "undefined" && window.innerWidth >= 768;
 
+  const hidePreview = useCallback(
+    (options?: { immediate?: boolean }) => {
+      const { immediate = false } = options || {};
+      const preview = previewRef.current;
+
+      if (!preview) {
+        setActiveProject((prev) => (prev ? null : prev));
+        return;
+      }
+
+      if (previewHideTweenRef.current) {
+        previewHideTweenRef.current.kill();
+        previewHideTweenRef.current = null;
+      }
+
+      const viewBadge = preview.querySelector(".view-badge");
+      if (viewBadge instanceof HTMLElement) {
+        if (immediate) {
+          gsap.set(viewBadge, { x: 0, y: 0 });
+        } else {
+          gsap.to(viewBadge, {
+            x: 0,
+            y: 0,
+            duration: 0.25,
+            ease: "power2.inOut",
+          });
+        }
+      }
+
+      if (immediate) {
+        gsap.set(preview, { autoAlpha: 0, scale: 0.85 });
+        setActiveProject(null);
+        return;
+      }
+
+      previewHideTweenRef.current = gsap.to(preview, {
+        autoAlpha: 0,
+        scale: 0.85,
+        duration: 0.25,
+        ease: "power3.inOut",
+        onComplete: () => {
+          previewHideTweenRef.current = null;
+          setActiveProject(null);
+        },
+      });
+    },
+    [],
+  );
+
   const openProjectLink = (project: Project) => {
     if (project.link) {
       window.open(project.link, "_blank", "noopener,noreferrer");
@@ -205,27 +254,7 @@ export function Work() {
       return;
     }
 
-    const preview = previewRef.current;
-    const viewBadge = preview.querySelector(".view-badge");
-    if (viewBadge instanceof HTMLElement) {
-      gsap.to(viewBadge, {
-        x: 0,
-        y: 0,
-        duration: 0.25,
-        ease: "power2.inOut",
-      });
-    }
-
-    previewHideTweenRef.current = gsap.to(preview, {
-      autoAlpha: 0,
-      scale: 0.85,
-      duration: 0.25,
-      ease: "power3.inOut",
-      onComplete: () => {
-        previewHideTweenRef.current = null;
-        setActiveProject(null);
-      },
-    });
+    hidePreview();
   };
 
   const handleProjectClick = (
@@ -267,6 +296,33 @@ export function Work() {
       },
     );
   }, [activeProject]);
+
+  useEffect(() => {
+    const handleScroll = () => hidePreview({ immediate: true });
+    const handleResize = () => {
+      if (!shouldUsePreview()) {
+        hidePreview({ immediate: true });
+      }
+    };
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        hidePreview({ immediate: true });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange,
+      );
+    };
+  }, [hidePreview]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -311,6 +367,13 @@ export function Work() {
       id="work"
       ref={sectionRef}
       className="bg-zinc-950 text-white relative py-16 sm:py-20 md:py-24 scroll-mt-28 sm:scroll-mt-32"
+      onMouseLeave={(event) => {
+        if (!sectionRef.current) return;
+        const nextTarget = event.relatedTarget as Node | null;
+        if (!nextTarget || !sectionRef.current.contains(nextTarget)) {
+          hidePreview({ immediate: true });
+        }
+      }}
     >
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-16 lg:px-24">
         {/* Intro Section */}
