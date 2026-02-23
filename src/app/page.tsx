@@ -13,9 +13,65 @@ import { ArrowUpRight } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
 
+function JsonLd() {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: DATA.name,
+    url: DATA.url,
+    image: `${DATA.url}${DATA.avatarUrl}`,
+    jobTitle: "Full Stack Developer",
+    description: DATA.description,
+    email: DATA.contact.email,
+    sameAs: [
+      DATA.contact.social.GitHub.url,
+      DATA.contact.social.LinkedIn.url,
+      DATA.contact.social.X.url,
+    ],
+    knowsAbout: DATA.skills.map((s) => s.name),
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "Odisha",
+      addressCountry: "IN",
+    },
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: DATA.name,
+    url: DATA.url,
+    description: DATA.description,
+    author: {
+      "@type": "Person",
+      name: DATA.name,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+    </>
+  );
+}
+
 export default function Page() {
   return (
     <main className="min-h-dvh flex flex-col gap-14 relative">
+      <JsonLd />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">

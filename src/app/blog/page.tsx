@@ -7,15 +7,24 @@ import { ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Thoughts on software development, life, and more.",
+  description:
+    "Thoughts on software development, web technologies, and building modern applications by Deepankar Sahoo.",
+  alternates: {
+    canonical: "https://deepankar.tech/blog",
+  },
   openGraph: {
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "Blog — Deepankar Sahoo",
+    description:
+      "Thoughts on software development, web technologies, and building modern applications.",
+    url: "https://deepankar.tech/blog",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "Blog — Deepankar Sahoo",
+    description:
+      "Thoughts on software development, web technologies, and building modern applications.",
+    creator: "@codebydeepankar",
   },
 };
 

@@ -236,7 +236,7 @@ export const DATA = {
       links: [],
     },
     {
-      title: "Inspireano 2k25",
+      title: "Insprano 2k25",
       dates: "2025",
       location: "India",
       description:
