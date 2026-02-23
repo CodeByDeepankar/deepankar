@@ -11,7 +11,7 @@ export default function HackathonsSection() {
         <div className="flex flex-col gap-y-4 items-center justify-center">
           <div className="flex items-center w-full">
             <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
-            <div className="border bg-primary z-10 rounded-xl px-4 py-1">
+            <div className="border bg-primary z-10 rounded-xl px-4 py-1 transition-transform duration-300 hover:scale-105">
               <span className="text-background text-sm font-medium">Hackathons</span>
             </div>
             <div className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent" />
@@ -27,19 +27,19 @@ export default function HackathonsSection() {
         </div>
         <Timeline>
           {DATA.hackathons.map((hackathon) => (
-            <TimelineItem key={hackathon.title + hackathon.dates} className="w-full flex items-start justify-between gap-10">
+            <TimelineItem key={hackathon.title + hackathon.dates} className="group/hack w-full flex items-start justify-between gap-10">
               <TimelineConnectItem className="flex items-start justify-center">
                 {hackathon.image ? (
                   <img
                     src={hackathon.image}
                     alt={hackathon.title}
-                    className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none"
+                    className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none transition-all duration-300 group-hover/hack:ring-primary/30 group-hover/hack:shadow-md"
                   />
                 ) : (
-                  <div className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border flex-none" />
+                  <div className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border flex-none transition-all duration-300 group-hover/hack:ring-primary/30 group-hover/hack:shadow-md" />
                 )}
               </TimelineConnectItem>
-              <div className="flex flex-1 flex-col justify-start gap-2 min-w-0">
+              <div className="flex flex-1 flex-col justify-start gap-2 min-w-0 transition-all duration-300 rounded-lg p-2 -m-2 group-hover/hack:bg-muted/50">
                 {hackathon.dates && (
                   <time className="text-xs text-muted-foreground">{hackathon.dates}</time>
                 )}

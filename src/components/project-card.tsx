@@ -19,7 +19,7 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="w-full h-48 object-cover"
+      className="w-full h-48 object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
       onError={() => setImageError(true)}
     />
   );
@@ -57,7 +57,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        "group/card flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5",
         className
       )}
     >
@@ -75,7 +75,7 @@ export function ProjectCard({
               loop
               muted
               playsInline
-              className="w-full h-48 object-cover"
+              className="w-full h-48 object-cover transition-transform duration-500 ease-out group-hover/card:scale-105"
             />
           ) : image ? (
             <ProjectImage src={image} alt={title} />
@@ -94,7 +94,7 @@ export function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
+                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90 transition-transform duration-200 hover:scale-105"
                   variant="default"
                 >
                   {link.icon}
@@ -129,7 +129,7 @@ export function ProjectCard({
             {tags.map((tag) => (
               <Badge
                 key={tag}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2"
+                className="text-[11px] font-medium border border-border h-6 w-fit px-2 transition-colors duration-200 hover:bg-muted hover:border-primary/30"
                 variant="outline"
               >
                 {tag}

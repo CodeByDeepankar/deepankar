@@ -3,8 +3,15 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 import { ReactLight } from "@/components/ui/svgs/reactLight";
 import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
 import { Typescript } from "@/components/ui/svgs/typescript";
+import { Javascript } from "@/components/ui/svgs/javascript";
+import { TailwindCSS } from "@/components/ui/svgs/tailwindcss";
 import { Nodejs } from "@/components/ui/svgs/nodejs";
+import { ExpressJs } from "@/components/ui/svgs/expressjs";
+import { Golang } from "@/components/ui/svgs/golang";
+import { MongoDB } from "@/components/ui/svgs/mongodb";
 import { Postgresql } from "@/components/ui/svgs/postgresql";
+import { AWS } from "@/components/ui/svgs/aws";
+import { Git } from "@/components/ui/svgs/git";
 import { Docker } from "@/components/ui/svgs/docker";
 
 export const DATA = {
@@ -19,18 +26,18 @@ export const DATA = {
     "Motivated Computer Science undergraduate with hands-on experience in full stack web and cloud application development. I build scalable, secure, and user-centric software using modern technologies like [Next.js](https://nextjs.org), [TypeScript](https://typescriptlang.org), and [AWS](https://aws.amazon.com). From winning hackathons like [BPUT Hackathon](/#hackathons) to being a [Smart India Hackathon 2025 Finalist](/#hackathons), I love solving real-world problems with innovative tech.",
   avatarUrl: "/me.png",
   skills: [
-    { name: "JavaScript", icon: Typescript },
+    { name: "JavaScript", icon: Javascript },
     { name: "TypeScript", icon: Typescript },
     { name: "React.js", icon: ReactLight },
     { name: "Next.js", icon: NextjsIconDark },
-    { name: "Tailwind CSS", icon: Typescript },
+    { name: "Tailwind CSS", icon: TailwindCSS },
     { name: "Node.js", icon: Nodejs },
-    { name: "Express.js", icon: Nodejs },
-    { name: "Go", icon: Nodejs },
-    { name: "MongoDB", icon: Nodejs },
+    { name: "Express.js", icon: ExpressJs },
+    { name: "Go", icon: Golang },
+    { name: "MongoDB", icon: MongoDB },
     { name: "PostgreSQL", icon: Postgresql },
-    { name: "AWS", icon: Docker },
-    { name: "Git", icon: Docker },
+    { name: "AWS", icon: AWS },
+    { name: "Git", icon: Git },
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -88,7 +95,7 @@ export const DATA = {
   education: [
     {
       school: "Government College of Engineering, Kalahandi",
-      href: "https://gcekalahandi.odisha.gov.in",
+      href: "https://gcekbpatna.ac.in/",
       degree: "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
       logoUrl: "/placeholder-college.png",
       start: "2024",
