@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 export async function POST(req: Request) {
   try {
@@ -27,18 +29,45 @@ export async function POST(req: Request) {
     // Remove data:image/png;base64, prefix if present
     const base64Content = base64Data.split(",")[1] || base64Data;
     
-    // Sanitize filename: lowercase, replace spaces/special chars with hyphens, append random string
+    // Sanitize filename: lowercase, replace spaces with hyphens, remove weird chars
     const ext = filename.split('.').pop() || 'png';
-    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.')).substring(0, 20); // max 20 chars
+    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.')).substring(0, 50);
     const cleanName = nameWithoutExt.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-    const randomSuffix = Math.random().toString(36).substring(2, 8);
-    const finalFilename = `${cleanName}-${randomSuffix}.${ext}`;
+    const finalFilename = `${cleanName}.${ext}`;
+
+    // Write locally if not on Vercel so it's instantly available without pulling
+    if (!process.env.VERCEL) {
+      try {
+        const localDir = path.join(process.cwd(), `public/images/${folder}`);
+        if (!fs.existsSync(localDir)) {
+          fs.mkdirSync(localDir, { recursive: true });
+        }
+        const localPath = path.join(localDir, finalFilename);
+        fs.writeFileSync(localPath, Buffer.from(base64Content, 'base64'));
+      } catch (err) {
+        console.error("Failed to write image locally:", err);
+      }
+    }
 
     // Store in selected folder
-    const path = `public/images/${folder}/${finalFilename}`;
-    const apiUrl = `https://api.github.com/repos/${githubRepo}/contents/${path}`;
+    const filePath = `public/images/${folder}/${finalFilename}`;
+    const apiUrl = `https://api.github.com/repos/${githubRepo}/contents/${filePath}`;
 
-    // Attempt to upload new file
+    // 1. Check if file already exists to get its SHA (required for overwrite)
+    let sha: string | undefined;
+    const getRes = await fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: "application/vnd.github.v3+json",
+      },
+    });
+
+    if (getRes.ok) {
+      const fileData = await getRes.json();
+      sha = fileData.sha;
+    }
+
+    // Attempt to upload or overwrite file
     const putRes = await fetch(apiUrl, {
       method: "PUT",
       headers: {
@@ -47,8 +76,9 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: `Upload image ${filename} via Admin Dashboard`,
+        message: `Upload image ${finalFilename} via Admin Dashboard`,
         content: base64Content,
+        sha: sha,
       }),
     });
 
