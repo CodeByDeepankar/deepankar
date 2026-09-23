@@ -327,12 +327,17 @@
   ],
   "gallery": [
     {
-      "title": "🏆 **Hackathon Winners!**  Proud to share that **Team Code Warriors** won our college Tech Fest Hackathon! 🚀  A great result of teamwork, creativity, and relentless problem-solving. 💻🔥",
+      "title": "Memory #12",
+      "src": "/images/gallery/gallery-12.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #1",
       "src": "/images/gallery/gallery-01.jpg",
       "category": "All"
     },
     {
-      "title": "🏆 **Selected in the Internal SIH Selection Round!**  Proud to share that **Team Code Warriors** cleared the **Internal Selection Round of Smart India Hackathon (SIH)**. 🚀  A strong step forward, built on teamwork, innovation, and problem-solving. 💻🔥",
+      "title": "Memory #2",
       "src": "/images/gallery/gallery-02.jpg",
       "category": "All"
     },
@@ -344,6 +349,11 @@
     {
       "title": "Memory #4",
       "src": "/images/gallery/gallery-04.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #5",
+      "src": "/images/gallery/gallery-05.jpg",
       "category": "All"
     },
     {
