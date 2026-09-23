@@ -1,43 +1,129 @@
-import Link from "next/link";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { FadeUp } from "@/components/animations/reveal";
 import { DATA } from "@/data/resume";
+import Link from "next/link";
+import { Icons } from "@/components/icons";
+import Image from "next/image";
+import { LinkPreview } from "@/components/ui/link-preview";
 
 export default function ContactSection() {
   return (
-    <div className="border rounded-xl p-10 relative group/contact transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
-      <div className="absolute -top-4 border bg-primary z-10 rounded-xl px-4 py-1 left-1/2 -translate-x-1/2 transition-transform duration-300 group-hover/contact:scale-105">
-        <span className="text-background text-sm font-medium">Contact</span>
+    <section id="contact" className="w-full relative z-10 bg-background border-t border-border/50 pt-24 overflow-hidden">
+      <div className="container mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 mb-24">
+          
+          <div className="flex flex-col">
+            <FadeUp>
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-primary font-mono text-sm">09</span>
+                <span className="text-sm font-mono tracking-widest text-muted-foreground uppercase">CONTACT</span>
+              </div>
+            </FadeUp>
+            
+            <FadeUp delay={0.1}>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] mb-8 text-primary">
+                LET'S BUILD<br/>SOMETHING<br/>AMAZING.
+              </h2>
+            </FadeUp>
+            
+            <FadeUp delay={0.2}>
+              <p className="text-muted-foreground text-lg font-light leading-relaxed mb-12 max-w-sm">
+                Want to collaborate, discuss a project, or just say hi? Feel free to reach out!
+              </p>
+            </FadeUp>
+
+            <FadeUp delay={0.3}>
+              <div className="flex flex-col gap-6">
+                <Link 
+                  href={`mailto:${DATA.contact.email}`}
+                  className="flex items-center gap-4 border border-border/50 bg-muted/5 hover:bg-muted/10 p-4 transition-colors group max-w-sm"
+                >
+                  <div className="w-10 h-10 bg-background border border-border/50 flex items-center justify-center rounded-full group-hover:scale-110 transition-transform">
+                    <Icons.email className="size-4" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-mono text-muted-foreground">Send an Email</span>
+                    <span className="text-sm">{DATA.contact.email}</span>
+                  </div>
+                </Link>
+
+                <div className="flex items-center gap-4">
+                   {Object.entries(DATA.contact.social).map(([name, social]) => (
+                      <LinkPreview 
+                        key={name} 
+                        url={social.url} 
+                        className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-2"
+                      >
+                        <social.icon className="size-4" /> {name}
+                      </LinkPreview>
+                   ))}
+                </div>
+              </div>
+            </FadeUp>
+          </div>
+
+          <div className="relative flex justify-center md:justify-end mt-12 md:mt-0">
+             <FadeUp delay={0.4} className="relative z-10 w-[300px] aspect-[3/4] border border-border/50 p-2 pb-12 bg-muted/10 -rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                <div className="relative w-full h-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+                    <Image 
+                        src="/images/contact/moon.png"
+                        alt="Moon"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                </div>
+                
+                <div className="absolute top-1/2 -right-12 z-20 pointer-events-none -rotate-12">
+                  <span className="text-4xl font-serif italic text-primary/80 leading-none whitespace-pre">
+                    Same<br/>Dreams<br/>Different<br/>People
+                  </span>
+                </div>
+             </FadeUp>
+          </div>
+        </div>
+
+        {/* Footer section inside contact */}
+        <div className="border-t border-border/50 pt-16 pb-8">
+            <FadeUp>
+                <div className="w-full text-center overflow-hidden mb-16">
+                    <h1 className="text-[10vw] font-black tracking-wide leading-none uppercase text-border/30 hover:text-border/60 transition-colors">
+                        DEEPANKAR<span className="text-primary/50 text-[3vw]">.TECH</span>
+                    </h1>
+                </div>
+            </FadeUp>
+            
+            <FadeUp delay={0.1}>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
+                    <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-mono uppercase tracking-widest text-muted-foreground">
+                        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+                        <Link href="#about" className="hover:text-foreground transition-colors">About</Link>
+                        <Link href="#work" className="hover:text-foreground transition-colors">Work</Link>
+                        <Link href="#gallery" className="hover:text-foreground transition-colors">Gallery</Link>
+                        <Link href="#lab" className="hover:text-foreground transition-colors">Lab</Link>
+                        <Link href="#contact" className="hover:text-foreground transition-colors">Contact</Link>
+                    </div>
+                    
+                    <Link 
+                        href="#hero"
+                        className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        Keep Building <Icons.arrowUp className="size-4" />
+                    </Link>
+                </div>
+            </FadeUp>
+            
+            <FadeUp delay={0.2}>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground border-t border-border/50 pt-8">
+                    <div>
+                        © {new Date().getFullYear()} Deepankar<br/>
+                        Designed & Built with <span className="text-red-500">♥</span> by Deepankar
+                    </div>
+                    <div className="text-right">
+                        Be a little better<br/>every day.
+                    </div>
+                </div>
+            </FadeUp>
+        </div>
       </div>
-      <div className="absolute inset-0 top-0 left-0 right-0 h-1/2 rounded-xl overflow-hidden">
-        <FlickeringGrid
-          className="h-full w-full"
-          squareSize={2}
-          gridGap={2}
-          style={{
-            maskImage: "linear-gradient(to bottom, black, transparent)",
-            WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
-          }}
-        />
-      </div>
-      <div className="relative flex flex-col items-center gap-4 text-center">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-          Get in Touch
-        </h2>
-        <p className="mx-auto max-w-lg text-muted-foreground text-balance">
-          Want to chat? Just shoot me a dm{" "}
-          <Link
-            href={DATA.contact.social.X.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm transition-colors duration-200 hover:text-blue-400"
-          >
-            with a direct question on twitter
-          </Link>{" "}
-          and I&apos;ll respond whenever I can. I will ignore all
-          soliciting.
-        </p>
-      </div>
-    </div>
+    </section>
   );
 }
-
