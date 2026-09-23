@@ -327,11 +327,6 @@
   ],
   "gallery": [
     {
-      "title": "Memory #12",
-      "src": "/images/gallery/gallery-12.jpg",
-      "category": "All"
-    },
-    {
       "title": "Memory #1",
       "src": "/images/gallery/gallery-01.jpg",
       "category": "All"
@@ -349,11 +344,6 @@
     {
       "title": "Memory #4",
       "src": "/images/gallery/gallery-04.jpg",
-      "category": "All"
-    },
-    {
-      "title": "Memory #5",
-      "src": "/images/gallery/gallery-05.jpg",
       "category": "All"
     },
     {
