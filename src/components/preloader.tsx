@@ -1,59 +1,61 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
-const greetings = [
+const GREETINGS = [
   "Hello",
-  "Hola",
   "Bonjour",
   "Ciao",
-  "Hallo",
   "Olá",
-  "Привет",
-  "こんにちは",
-  "안녕하세요",
-  "Namaste",
   "Merhaba",
-  "Salaam",
-  "Hej",
-  "Salam",
-  "Sawubona",
+  "Namaste",
+  "Hallo",
+  "Hola"
 ];
 
 export function PreLoader() {
-  const [currentGreeting, setCurrentGreeting] = useState(0);
   const [done, setDone] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const loaderRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Lock scroll
     document.body.style.overflow = "hidden";
+    
+    // Animate text changing
+    let index = 0;
+    const interval = setInterval(() => {
+      index++;
+      if (index >= GREETINGS.length) {
+        clearInterval(interval);
+        
+        // Slide up animation
+        const tl = gsap.timeline({
+          onComplete: () => {
+            setDone(true);
+            document.body.style.overflow = ""; // unlock scroll
+          }
+        });
+        
+        tl.to(wrapperRef.current, {
+           opacity: 0,
+           duration: 0.2
+        }).to(loaderRef.current, {
+           yPercent: -100,
+           duration: 0.8,
+           ease: "power4.inOut"
+        }, "+=0.1");
 
-    const greetingInterval = setInterval(() => {
-      setCurrentGreeting((prev) => {
-        if (prev < greetings.length - 1) return prev + 1;
-        return prev;
-      });
-    }, 150);
-
-    const fadeTimeout = setTimeout(() => {
-      clearInterval(greetingInterval);
-
-      if (loaderRef.current) {
-        const fadeAnim = loaderRef.current.animate(
-          [{ opacity: 1 }, { opacity: 0 }],
-          { duration: 800, easing: "ease-out", fill: "forwards" }
-        );
-
-        fadeAnim.onfinish = () => {
-          setDone(true);
-          document.body.style.overflow = "";
-        };
+      } else {
+        setCurrentIndex(index);
       }
-    }, greetings.length * 150 + 300);
+    }, 200); // speed of changing languages
 
     return () => {
-      clearInterval(greetingInterval);
-      clearTimeout(fadeTimeout);
+      clearInterval(interval);
       document.body.style.overflow = "";
     };
   }, []);
@@ -63,12 +65,10 @@ export function PreLoader() {
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[9999] bg-zinc-950 flex items-center justify-center"
+      className="fixed inset-0 z-[9999] bg-[#000000] flex items-center justify-center text-white"
     >
-      <div className="px-4">
-        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white text-center font-sans font-light tracking-tight">
-          {greetings[currentGreeting]}
-        </h2>
+      <div ref={wrapperRef} className="flex items-center text-3xl md:text-5xl font-medium tracking-tight">
+         {GREETINGS[currentIndex]}
       </div>
     </div>
   );

@@ -1,0 +1,385 @@
+{
+  "name": "Deepankar Sahoo",
+  "initials": "DS",
+  "url": "https://deepankar.tech",
+  "location": "Odisha, India",
+  "locationLink": "https://www.google.com/maps/place/odisha",
+  "description": "Full Stack Developer. Building scalable, secure, and user-centric software using modern technologies.",
+  "summary": "Motivated Computer Science undergraduate with hands-on experience in full stack web and cloud application development. I build scalable, secure, and user-centric software using modern technologies like [Next.js](https://nextjs.org), [TypeScript](https://typescriptlang.org), and [AWS](https://aws.amazon.com). From winning hackathons like [BPUT Hackathon](/#hackathons) to being a [Smart India Hackathon 2025 Finalist](/#hackathons), I love solving real-world problems with innovative tech.",
+  "avatarUrl": "/me.png",
+  "skills": [
+    {
+      "name": "JavaScript",
+      "icon": "Javascript"
+    },
+    {
+      "name": "TypeScript",
+      "icon": "Typescript"
+    },
+    {
+      "name": "React.js",
+      "icon": "ReactLight"
+    },
+    {
+      "name": "Next.js",
+      "icon": "NextjsIconDark"
+    },
+    {
+      "name": "Tailwind CSS",
+      "icon": "TailwindCSS"
+    },
+    {
+      "name": "Node.js",
+      "icon": "Nodejs"
+    },
+    {
+      "name": "Express.js",
+      "icon": "ExpressJs"
+    },
+    {
+      "name": "Go",
+      "icon": "Golang"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "MongoDB"
+    },
+    {
+      "name": "PostgreSQL",
+      "icon": "Postgresql"
+    },
+    {
+      "name": "AWS",
+      "icon": "AWS"
+    },
+    {
+      "name": "Git",
+      "icon": "Git"
+    }
+  ],
+  "navbar": [
+    {
+      "href": "/",
+      "icon": "HomeIcon",
+      "label": "Home"
+    },
+    {
+      "href": "/blog",
+      "icon": "NotebookIcon",
+      "label": "Blog"
+    }
+  ],
+  "contact": {
+    "email": "contact@deepankar.tech",
+    "tel": "+917327007170",
+    "social": {
+      "GitHub": {
+        "name": "GitHub",
+        "url": "https://github.com/codebydeepankar",
+        "icon": "github",
+        "navbar": true
+      },
+      "LinkedIn": {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/deepankarsahoo",
+        "icon": "linkedin",
+        "navbar": true
+      },
+      "X": {
+        "name": "X",
+        "url": "https://twitter.com/codebydeepankar",
+        "icon": "x",
+        "navbar": true
+      },
+      "email": {
+        "name": "Send Email",
+        "url": "mailto:contact@deepankar.tech",
+        "icon": "email",
+        "navbar": false
+      }
+    }
+  },
+  "work": [
+    {
+      "company": "Freelance",
+      "href": "https://github.com/codebydeepankar",
+      "badges": [],
+      "location": "Remote",
+      "title": "Fullstack Developer",
+      "logoUrl": "/Freelance.svg",
+      "start": "2023",
+      "end": "Present",
+      "description": "Building modern web applications for clients using React, Next.js, TypeScript, and Tailwind CSS. Developing scalable APIs with Node.js, Express, and PostgreSQL. Implementing CI/CD pipelines and deploying applications using Docker and AWS."
+    }
+  ],
+  "education": [
+    {
+      "school": "Government College of Engineering, Kalahandi",
+      "href": "https://gcekbpatna.ac.in/",
+      "degree": "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
+      "logoUrl": "/placeholder-college.png",
+      "start": "2024",
+      "end": "2028"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Tekkzy",
+      "href": "https://tekky.vercel.app",
+      "dates": "2025",
+      "active": true,
+      "description": "Intelligent Cloud Applications Platform. Designed and developed a production-grade full stack cloud platform showcasing automation and software solutions. Built serverless APIs on AWS Lambda with MongoDB persistence and JWT-based authentication.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Node.js",
+        "Express.js",
+        "AWS Lambda",
+        "MongoDB",
+        "Framer Motion"
+      ],
+      "links": [
+        {
+          "type": "Website",
+          "href": "https://tekky.vercel.app",
+          "icon": "globe"
+        },
+        {
+          "type": "Source",
+          "href": "https://github.com/CodeByDeepankar/tekkzy",
+          "icon": "github"
+        }
+      ],
+      "image": "/images/projects/placeholder-tekkzy.png",
+      "video": ""
+    },
+    {
+      "title": "Gyanaratna",
+      "href": "https://gyanaratna.vercel.app",
+      "dates": "2025",
+      "active": true,
+      "description": "AI-powered full stack Progressive Web Application for academic management. Built role-based dashboards for admin, teachers, and students. Integrated AI-driven insights for academic monitoring and designed scalable REST APIs with optimized frontend performance.",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Node.js"
+      ],
+      "links": [
+        {
+          "type": "Website",
+          "href": "https://gyanaratna.vercel.app",
+          "icon": "globe"
+        },
+        {
+          "type": "Source",
+          "href": "https://github.com/CodeByDeepankar/gyanaratna",
+          "icon": "github"
+        }
+      ],
+      "image": "/images/projects/gyanaratnaweb.png",
+      "video": ""
+    },
+    {
+      "title": "Nagarmitra",
+      "href": "https://nagarmitra.vercel.app",
+      "dates": "2025",
+      "active": true,
+      "description": "Civic issue reporting web application with map-based tracking. Enabled public reporting of infrastructure issues like potholes and streetlights. Implemented map view, admin workflows, and complaint status tracking.",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Node.js",
+        "PostgreSQL"
+      ],
+      "links": [
+        {
+          "type": "Website",
+          "href": "https://nagarmitra.vercel.app",
+          "icon": "globe"
+        },
+        {
+          "type": "Source",
+          "href": "https://github.com/CodeByDeepankar/nagarmitra",
+          "icon": "github"
+        }
+      ],
+      "image": "/images/projects/nagaramitra.png",
+      "video": ""
+    },
+    {
+      "title": "Nidhisetu",
+      "href": "https://nidhisetu.vercel.app",
+      "dates": "2025",
+      "active": true,
+      "description": "Loan utilization analysis mobile application. Built a React Native app for monitoring loan asset utilization. Integrated AI analysis using Ollama models for asset review.",
+      "technologies": [
+        "React Native",
+        "TypeScript",
+        "AI/ML",
+        "Ollama",
+        "Node.js"
+      ],
+      "links": [
+        {
+          "type": "Website",
+          "href": "https://nidhisetu.vercel.app",
+          "icon": "globe"
+        },
+        {
+          "type": "Source",
+          "href": "https://github.com/CodeByDeepankar/nidhisetu",
+          "icon": "github"
+        }
+      ],
+      "image": "/images/projects/nidhisetuweb.png",
+      "video": ""
+    }
+  ],
+  "hackathons": [
+    {
+      "title": "Smart India Hackathon (SIH) 2025",
+      "dates": "2025",
+      "location": "India",
+      "description": "Represented team in developing Nidhisetu, a loan utilization analysis mobile application. Built a React Native app with AI-powered asset monitoring using Ollama model. Secured Finalist position among thousands of participating teams.",
+      "image": "/placeholder-sih.png",
+      "win": "Finalist",
+      "links": []
+    },
+    {
+      "title": "Insprano 2k25",
+      "dates": "2025",
+      "location": "India",
+      "description": "Won the college-level hackathon by building Nagaramitra, a civic issue reporting web application with map-based tracking. Enabled public reporting of infrastructure issues and implemented admin workflows with complaint status tracking.",
+      "image": "/placeholder-inspireano.png",
+      "win": "Winner",
+      "links": [
+        {
+          "title": "Website",
+          "icon": "globe",
+          "href": "https://nagarmitra.vercel.app"
+        }
+      ]
+    },
+    {
+      "title": "BPUT Hackathon",
+      "dates": "2025",
+      "location": "India",
+      "description": "Built Gyanaratna, an AI-powered full stack Progressive Web Application for academic management. Designed role-based dashboards, integrated AI-driven insights for academic monitoring, and optimized frontend performance.",
+      "image": "/gyanaratna.png",
+      "win": "Winner",
+      "links": [
+        {
+          "title": "Website",
+          "icon": "globe",
+          "href": "https://gyanaratna.vercel.app"
+        }
+      ]
+    }
+  ],
+  "lab": [
+    {
+      "title": "Particle Field",
+      "description": "WebGL interactive particle system",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "title": "AI Resume Builder",
+      "description": "Generative AI powered ATS resume maker",
+      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "title": "Realtime Dashboard",
+      "description": "WebSocket based live analytics",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      "title": "Motion UI",
+      "description": "Advanced Framer Motion experiments",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop"
+    }
+  ],
+  "currentlyBuilding": [
+    {
+      "title": "Next-gen Portfolio Template",
+      "description": "A premium open-source template for creative developers.",
+      "progress": 75,
+      "technologies": [
+        "Next.js",
+        "GSAP",
+        "TailwindCSS"
+      ]
+    },
+    {
+      "title": "AI Code Assistant CLI",
+      "description": "Terminal-based tool for faster context switching.",
+      "progress": 40,
+      "technologies": [
+        "Rust",
+        "OpenAI",
+        "CLI"
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Memory #1",
+      "src": "/images/gallery/gallery-01.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #2",
+      "src": "/images/gallery/gallery-02.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #3",
+      "src": "/images/gallery/gallery-03.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #4",
+      "src": "/images/gallery/gallery-04.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #5",
+      "src": "/images/gallery/gallery-05.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #6",
+      "src": "/images/gallery/gallery-06.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #7",
+      "src": "/images/gallery/gallery-07.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #8",
+      "src": "/images/gallery/gallery-08.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #9",
+      "src": "/images/gallery/gallery-09.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #10",
+      "src": "/images/gallery/gallery-10.jpg",
+      "category": "All"
+    },
+    {
+      "title": "Memory #11",
+      "src": "/images/gallery/gallery-11.jpg",
+      "category": "All"
+    }
+  ]
+}

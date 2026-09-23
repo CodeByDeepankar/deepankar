@@ -1,80 +1,78 @@
-/* eslint-disable @next/next/no-img-element */
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+import { FadeUp } from "@/components/animations/reveal";
 import { DATA } from "@/data/resume";
-import { Timeline, TimelineItem, TimelineConnectItem } from "@/components/timeline";
+import Image from "next/image";
 
 export default function HackathonsSection() {
   return (
-    <section id="hackathons" className="overflow-hidden">
-      <div className="flex min-h-0 flex-col gap-y-8 w-full">
-        <div className="flex flex-col gap-y-4 items-center justify-center">
-          <div className="flex items-center w-full">
-            <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
-            <div className="border bg-primary z-10 rounded-xl px-4 py-1 transition-transform duration-300 hover:scale-105">
-              <span className="text-background text-sm font-medium">Hackathons</span>
+    <section id="hackathons" className="w-full relative z-10 bg-background border-t border-border/50 py-24 px-6">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <FadeUp>
+                <div className="flex items-center gap-4">
+                    <span className="text-primary font-mono text-sm">05</span>
+                    <span className="text-sm font-mono tracking-widest text-muted-foreground uppercase">HACKATHON JOURNEY</span>
+                </div>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+                <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase border-b border-border/50 pb-2">BUILDING UNDER PRESSURE</span>
+            </FadeUp>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Timeline */}
+          <div className="relative pl-12">
+            {/* Vertical Line */}
+            <div className="absolute top-0 bottom-0 left-4 w-px bg-border/50" />
+            
+            <div className="flex flex-col gap-16">
+              {DATA.hackathons.map((hackathon, index) => (
+                <FadeUp key={hackathon.title} delay={0.1 * index}>
+                  <div className="relative">
+                    {/* Node */}
+                    <div className="absolute -left-[45px] top-1 w-8 h-8 rounded-full border border-primary bg-background flex items-center justify-center z-10">
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                    </div>
+                    
+                    <div className="flex flex-col gap-4">
+                      <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">{hackathon.dates}</span>
+                      <h3 className="text-2xl font-bold tracking-tight">{hackathon.title}</h3>
+                      <span className="text-xs font-mono text-muted-foreground">{hackathon.location}</span>
+                      <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-md">
+                        {hackathon.description}
+                      </p>
+                      <div>
+                        <span className="inline-block px-3 py-1 border border-primary/50 text-primary text-[10px] font-mono uppercase tracking-widest bg-primary/5">
+                          {hackathon.win}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
             </div>
-            <div className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent" />
           </div>
-          <div className="flex flex-col gap-y-3 items-center justify-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">I like building things</h2>
-            <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-              During my time in university, I attended {DATA.hackathons.length}+
-              hackathons. People from around the country would come together and
-              build incredible things in 2-3 days. It was eye-opening to see the endless possibilities brought to life by a group of motivated and passionate individuals.
-            </p>
+
+          {/* Graphic/Image side */}
+          <div className="hidden lg:flex flex-col items-center justify-center relative min-h-[500px]">
+            <FadeUp delay={0.3} className="w-full h-full relative">
+              <div className="absolute inset-0 bg-muted/10 border border-border/50 overflow-hidden group">
+                <Image 
+                  src="/images/hackathons/hackathon-feature.png" 
+                  alt="Hackathons" 
+                  fill 
+                  className="object-cover opacity-30 grayscale mix-blend-screen transition-all duration-700 group-hover:scale-105 group-hover:opacity-50"
+                />
+                
+                <div className="absolute bottom-12 right-12 z-20 flex flex-col items-end text-right">
+                  <span className="text-5xl font-serif italic text-primary/40 leading-none">Ideas</span>
+                  <span className="text-5xl font-serif italic text-primary/60 leading-none">Teams</span>
+                  <span className="text-5xl font-serif italic text-primary/80 leading-none">Late Nights</span>
+                  <span className="text-5xl font-serif italic text-primary leading-none">Big Dreams</span>
+                </div>
+              </div>
+            </FadeUp>
           </div>
         </div>
-        <Timeline>
-          {DATA.hackathons.map((hackathon) => (
-            <TimelineItem key={hackathon.title + hackathon.dates} className="group/hack w-full flex items-start justify-between gap-10">
-              <TimelineConnectItem className="flex items-start justify-center">
-                {hackathon.image ? (
-                  <img
-                    src={hackathon.image}
-                    alt={hackathon.title}
-                    className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none transition-all duration-300 group-hover/hack:ring-primary/30 group-hover/hack:shadow-md"
-                  />
-                ) : (
-                  <div className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border flex-none transition-all duration-300 group-hover/hack:ring-primary/30 group-hover/hack:shadow-md" />
-                )}
-              </TimelineConnectItem>
-              <div className="flex flex-1 flex-col justify-start gap-2 min-w-0 transition-all duration-300 rounded-lg p-2 -m-2 group-hover/hack:bg-muted/50">
-                {hackathon.dates && (
-                  <time className="text-xs text-muted-foreground">{hackathon.dates}</time>
-                )}
-                {hackathon.title && (
-                  <h3 className="font-semibold leading-none">{hackathon.title}</h3>
-                )}
-                {hackathon.location && (
-                  <p className="text-sm text-muted-foreground">{hackathon.location}</p>
-                )}
-                {hackathon.description && (
-                  <p className="text-sm text-muted-foreground leading-relaxed wrap-break-word">
-                    {hackathon.description}
-                  </p>
-                )}
-                {hackathon.links && hackathon.links.length > 0 && (
-                  <div className="mt-1 flex flex-row flex-wrap items-start gap-2">
-                    {hackathon.links.map((link, idx) => (
-                      <Link
-                        href={link.href}
-                        key={idx}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Badge className="flex items-center gap-1.5 text-xs bg-primary text-primary-foreground">
-                          {link.icon}
-                          {link.title}
-                        </Badge>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </TimelineItem>
-          ))}
-        </Timeline>
       </div>
     </section>
   );
