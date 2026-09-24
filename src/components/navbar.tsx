@@ -14,17 +14,22 @@ import {
   IconPhoto,
   IconFlask,
   IconMail,
-  IconCpu
+  IconCpu,
+  IconCalendarEvent,
+  IconCode,
+  IconTag
 } from "@tabler/icons-react";
 
 const NAV_LINKS = [
   { name: "Home", href: "/", icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Services", href: "#services", icon: <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Work", href: "#work", icon: <IconCode className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "About", href: "#about", icon: <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { name: "Work", href: "#work", icon: <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Pricing", href: "#pricing", icon: <IconTag className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Gallery", href: "#gallery", icon: <IconPhoto className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { name: "Lab", href: "#lab", icon: <IconFlask className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "AI", href: "/ai", icon: <IconCpu className="h-full w-full text-lime-500" /> },
   { name: "Contact", href: "#contact", icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Book", href: "/book", icon: <IconCalendarEvent className="h-full w-full text-primary" /> },
 ];
 
 export default function Navbar() {
@@ -83,10 +88,10 @@ export default function Navbar() {
             {/* CTA */}
             <Magnetic>
               <Link 
-                href="#contact"
-                className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-border/50 px-4 py-2 rounded-full hover:bg-muted/20 transition-colors"
+                href="/book"
+                className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-primary/50 text-primary px-6 py-3 rounded-full hover:bg-primary hover:text-black transition-colors font-bold"
               >
-                Let's Talk <Icons.arrowRight className="size-3 -rotate-45" />
+                Book a Call <Icons.arrowRight className="size-3 -rotate-45" />
               </Link>
             </Magnetic>
           </nav>

@@ -8,6 +8,7 @@ import GallerySection from "@/components/section/gallery-section";
 import LabSection from "@/components/section/lab-section";
 import CurrentlyBuildingSection from "@/components/section/currently-building-section";
 import ContactSection from "@/components/section/contact-section";
+import ExperienceSection from "@/components/section/experience-section";
 import { DATA } from "@/data/resume";
 
 const structuredData = {
@@ -33,19 +34,47 @@ export function JsonLd() {
   );
 }
 
+import ServicesSection from "@/components/section/services-section";
+import PricingSection from "@/components/section/pricing-section";
+import AiCtaSection from "@/components/section/ai-cta-section";
+
 export default function Page() {
   return (
     <main className="relative w-full">
       <JsonLd />
       <HeroSection />
-      <AboutSection />
-      <PhilosophySection />
-      <SkillsSection />
+      
+      {/* 4. Services */}
+      <ServicesSection />
+      
+      {/* 5. Selected Work */}
       <ProjectsSection />
+      
+      {/* 6. Process (Philosophy) */}
+      <PhilosophySection />
+      
+      {/* 7. Pricing */}
+      <PricingSection />
+      
+      {/* 8. Why Deepankar (About) */}
+      <AboutSection />
+      
+      {/* 9. CV / Experience */}
+      <SkillsSection />
+      <ExperienceSection />
+      
+      {/* 10. Hackathons / Achievements */}
       <HackathonsSection />
+      
+      {/* Gallery & Lab (Existing) */}
       <GallerySection />
       <LabSection />
       <CurrentlyBuildingSection />
+      
+      {/* 11. AI CTA */}
+      <AiCtaSection />
+      
+      {/* 13. Final project CTA */}
       <ContactSection />
     </main>
   );

@@ -59,7 +59,7 @@ export default function HackathonsSection() {
                 <Image 
                   src="/images/hackathons/hackathon-feature.png" 
                   alt="Hackathons" 
-                  fill 
+                  fill sizes="(max-width: 768px) 100vw, 50vw" 
                   className="object-cover opacity-30 grayscale mix-blend-screen transition-all duration-700 group-hover:scale-105 group-hover:opacity-50"
                 />
                 

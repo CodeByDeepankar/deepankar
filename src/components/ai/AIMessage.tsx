@@ -8,6 +8,9 @@ import AISkills from "./AISkills";
 import AICurrentWork from "./AICurrentWork";
 import AIHackathons from "./AIHackathons";
 import AIAbout from "./AIAbout";
+import AIServiceCard from "./AIServiceCard";
+import AIAutoSubmitLead from "./AIAutoSubmitLead";
+import { TextGenerateEffect } from "../ui/text-generate-effect";
 
 interface AIMessageProps {
   message: Message;
@@ -32,6 +35,31 @@ export default function AIMessageNode({ message, isLast }: AIMessageProps) {
     );
   }
 
+  // Parse markers for AI Message
+  let displayContent = typeof message.content === 'string' ? message.content : JSON.stringify(message.content);
+  
+  // Extract Service markers: [[SHOW_SERVICE:slug]]
+  const serviceRegex = /\[\[SHOW_SERVICE:([^\]]+)\]\]/g;
+  let serviceSlug: string | null = null;
+  const serviceMatch = serviceRegex.exec(displayContent);
+  if (serviceMatch) {
+    serviceSlug = serviceMatch[1];
+    displayContent = displayContent.replace(serviceRegex, "").trim();
+  }
+  
+  // Extract Auto Submit Lead marker: [[SUBMIT_LEAD:{...}]]
+  const leadRegex = /\[\[SUBMIT_LEAD:([^\]]+)\]\]/g;
+  let leadData: any = null;
+  const leadMatch = leadRegex.exec(displayContent);
+  if (leadMatch) {
+    try {
+      leadData = JSON.parse(leadMatch[1]);
+    } catch (e) {
+      console.error("Failed to parse lead data from AI", e);
+    }
+    displayContent = displayContent.replace(leadRegex, "").trim();
+  }
+
   // AI Message
   return (
     <div className="w-full flex justify-start animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -42,7 +70,7 @@ export default function AIMessageNode({ message, isLast }: AIMessageProps) {
           <Image
             src="/images/ai/ai_avater.png"
             alt="AI"
-            fill
+            fill sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
         </div>
@@ -51,17 +79,21 @@ export default function AIMessageNode({ message, isLast }: AIMessageProps) {
         <div className="flex flex-col gap-6 pt-1 w-full">
           {/* AI Text Response */}
           <div className="text-lg md:text-xl text-neutral-200 font-sans max-w-3xl leading-relaxed whitespace-pre-wrap">
-            {typeof message.content === 'string' ? message.content : JSON.stringify(message.content)}
+            <TextGenerateEffect words={displayContent} duration={isLast ? 0.3 : 0} filter={isLast} />
           </div>
 
           {/* AI Visual Response based on Intent */}
           {message.intent === "projects" && <AIProjectCarousel />}
-          {message.intent === "project-detail" && <AIProjectDetail text={message.content} />}
+          {message.intent === "project-detail" && <AIProjectDetail text={displayContent} />}
           {message.intent === "gallery" && <AIGallery />}
           {message.intent === "skills" && <AISkills />}
           {message.intent === "current-work" && <AICurrentWork />}
           {message.intent === "hackathons" && <AIHackathons />}
           {message.intent === "about" && <AIAbout />}
+          
+          {/* AI Visual Response based on Markers */}
+          {serviceSlug && <AIServiceCard slug={serviceSlug} />}
+          {leadData && <AIAutoSubmitLead data={leadData} />}
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ export default function AIHackathons() {
               
               {hackathon.image && (
                 <div className="w-12 h-12 relative rounded-full overflow-hidden border border-neutral-800 shrink-0">
-                  <Image src={hackathon.image} alt={hackathon.title} fill className="object-cover" />
+                  <Image src={hackathon.image} alt={hackathon.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
               )}
             </div>

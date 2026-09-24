@@ -22,23 +22,24 @@ export default function HeroSection() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase leading-[0.85] mb-6">
+            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-[0.95] mb-6">
               <SquigglyText>
-                I'M<br/>
-                <span className="text-primary">DEEPANKAR</span>
+                I build websites<br/>
+                that work for<br/>
+                <span className="text-primary">your business.</span>
               </SquigglyText>
             </h1>
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div className="max-w-md mb-12">
+            <div className="max-w-lg mb-12">
               <TypewriterEffect 
                 words={DATA.description.split(" ").map(word => ({ 
                   text: word,
-                  className: "text-muted-foreground dark:text-muted-foreground text-lg md:text-xl font-light leading-relaxed"
+                  className: "text-muted-foreground dark:text-muted-foreground text-[1.1rem] md:text-[22px] font-light tracking-wide"
                 }))} 
-                className="text-left font-normal text-base sm:text-lg md:text-xl"
-                cursorClassName="bg-primary h-5 md:h-6"
+                className="text-left font-normal text-lg leading-snug md:leading-[1.4]"
+                cursorClassName="hidden"
               />
             </div>
           </FadeUp>

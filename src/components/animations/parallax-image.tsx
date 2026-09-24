@@ -65,7 +65,7 @@ export function ParallaxImage({ src, alt, className, imageClassName, priority }:
         ref={imageRef}
         src={src}
         alt={alt}
-        fill
+        fill sizes="(max-width: 768px) 100vw, 50vw"
         className={cn("object-cover", imageClassName)}
         priority={priority}
       />

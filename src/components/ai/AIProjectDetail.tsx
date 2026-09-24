@@ -31,7 +31,7 @@ export default function AIProjectDetail({ text }: AIProjectDetailProps) {
           <Image
             src={project.image}
             alt={project.title}
-            fill
+            fill sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover rounded-t-xl border-t border-x border-neutral-800"
           />
         )}

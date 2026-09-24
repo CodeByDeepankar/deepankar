@@ -54,7 +54,7 @@ export default function AIProjectCarousel() {
                   <Image 
                     src={project.image}
                     alt={project.title}
-                    fill
+                    fill sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover group-hover/card:scale-105 transition-transform duration-500"
                   />
                 )}

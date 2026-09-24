@@ -52,7 +52,7 @@ export default function AILanding({ onSendMessage, isLoading }: AILandingProps) 
           <Image
             src="/images/ai/ai_avater.png"
             alt="Deepankar AI Avatar"
-            fill
+            fill sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain drop-shadow-[0_0_50px_rgba(132,204,22,0.3)]"
             priority
           />

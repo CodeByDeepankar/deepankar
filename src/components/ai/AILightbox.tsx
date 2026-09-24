@@ -56,7 +56,7 @@ export default function AILightbox({ images, initialIndex, onClose }: AILightbox
         <Image 
           src={images[currentIndex].src}
           alt={images[currentIndex].title || "Gallery Image"}
-          fill
+          fill sizes="(max-width: 768px) 100vw, 50vw"
           className="object-contain"
           priority
         />

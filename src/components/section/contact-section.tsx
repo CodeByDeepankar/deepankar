@@ -1,11 +1,33 @@
+"use client";
+
 import { FadeUp } from "@/components/animations/reveal";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
-import { LinkPreview } from "@/components/ui/link-preview";
+import { useState } from "react";
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, source: "contact_form" }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="w-full relative z-10 bg-background border-t border-border/50 pt-24 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-6">
@@ -32,32 +54,40 @@ export default function ContactSection() {
             </FadeUp>
 
             <FadeUp delay={0.3}>
-              <div className="flex flex-col gap-6">
-                <Link 
-                  href={`mailto:${DATA.contact.email}`}
-                  className="flex items-center gap-4 border border-border/50 bg-muted/5 hover:bg-muted/10 p-4 transition-colors group max-w-sm"
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm">
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="bg-muted/5 border border-border/50 p-4 outline-none focus:border-primary transition-colors text-sm"
+                />
+                <input 
+                  type="email" 
+                  placeholder="Your Email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="bg-muted/5 border border-border/50 p-4 outline-none focus:border-primary transition-colors text-sm"
+                />
+                <textarea 
+                  placeholder="Tell me about your project..." 
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  className="bg-muted/5 border border-border/50 p-4 outline-none focus:border-primary transition-colors text-sm resize-none"
+                />
+                <button 
+                  type="submit" 
+                  disabled={status === "loading" || status === "success"}
+                  className="bg-primary text-black font-bold p-4 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  <div className="w-10 h-10 bg-background border border-border/50 flex items-center justify-center rounded-full group-hover:scale-110 transition-transform">
-                    <Icons.email className="size-4" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-mono text-muted-foreground">Send an Email</span>
-                    <span className="text-sm">{DATA.contact.email}</span>
-                  </div>
-                </Link>
-
-                <div className="flex items-center gap-4">
-                   {Object.entries(DATA.contact.social).map(([name, social]) => (
-                      <LinkPreview 
-                        key={name} 
-                        url={social.url} 
-                        className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-2"
-                      >
-                        <social.icon className="size-4" /> {name}
-                      </LinkPreview>
-                   ))}
-                </div>
-              </div>
+                  {status === "loading" ? "Sending..." : status === "success" ? "Message Sent!" : "Send Message"}
+                </button>
+                {status === "error" && <p className="text-red-500 text-xs mt-2">Failed to send message. Please try again.</p>}
+              </form>
             </FadeUp>
           </div>
 
@@ -67,7 +97,7 @@ export default function ContactSection() {
                     <Image 
                         src="/images/contact/moon.png"
                         alt="Moon"
-                        fill
+                        fill sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                 </div>
@@ -114,8 +144,8 @@ export default function ContactSection() {
             <FadeUp delay={0.2}>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground border-t border-border/50 pt-8">
                     <div>
-                        © {new Date().getFullYear()} Deepankar<br/>
-                        Designed & Built with <span className="text-red-500">♥</span> by Deepankar
+                        c {new Date().getFullYear()} Deepankar<br/>
+                        Designed & Built with <span className="text-red-500"> </span> by Deepankar
                     </div>
                     <div className="text-right">
                         Be a little better<br/>every day.

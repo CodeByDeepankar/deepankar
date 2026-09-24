@@ -26,7 +26,7 @@ export default function LabSection() {
                   <Image 
                     src={experiment.image}
                     alt={experiment.title}
-                    fill
+                    fill sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 mix-blend-overlay transition-colors duration-500" />

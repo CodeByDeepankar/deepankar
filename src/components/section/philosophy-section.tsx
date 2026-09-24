@@ -44,7 +44,7 @@ export default function PhilosophySection() {
                 <Image 
                   src="/images/philosophy/philosophy.png"
                   alt="Philosophy"
-                  fill
+                  fill sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover opacity-50 grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />

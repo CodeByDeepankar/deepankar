@@ -22,12 +22,12 @@ export default function AIConversation({ messages, isLoading, onSendMessage }: A
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 w-full flex flex-col items-center justify-between relative z-10 px-4 md:px-8 pb-6">
+    <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-between relative z-10 px-4 md:px-8 pb-6">
       
       {/* Scrollable messages container */}
       <div 
         ref={scrollRef}
-        className="flex-1 w-full max-w-5xl overflow-y-auto overflow-x-hidden pt-10 pb-32 no-scrollbar flex flex-col gap-8"
+        className="flex-1 min-h-0 w-full max-w-5xl overflow-y-auto overflow-x-hidden pt-10 pb-32 no-scrollbar flex flex-col gap-8"
       >
         {messages.map((msg, index) => (
           <AIMessageNode key={msg.id} message={msg} isLast={index === messages.length - 1} />

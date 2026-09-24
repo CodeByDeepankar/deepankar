@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { MoveLeft } from "lucide-react";
+import { MoveLeft, X, Trash2 } from "lucide-react";
 
-export default function AIHeader() {
+interface AIHeaderProps {
+  onClear?: () => void;
+  showClear?: boolean;
+}
+
+export default function AIHeader({ onClear, showClear }: AIHeaderProps = {}) {
   return (
     <header className="w-full flex items-center justify-between px-6 py-8 relative z-50 text-white font-mono text-xs uppercase tracking-[0.2em]">
       <div className="flex-1 flex items-center justify-start">
@@ -22,13 +27,23 @@ export default function AIHeader() {
       </nav>
 
       <div className="flex-1 flex justify-end items-center gap-4">
+        {showClear && (
+          <button 
+            onClick={onClear}
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-red-400 hover:border-red-900/50 transition-colors"
+            title="Clear conversation"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        )}
         <Link href="/" className="md:hidden flex items-center gap-2 border border-neutral-800 rounded-full px-4 py-2 hover:bg-neutral-900 transition-colors">
           <MoveLeft className="w-3 h-3" /> Back
         </Link>
-        <div className="hidden md:flex items-center gap-2 border border-neutral-800 rounded-full px-4 py-2">
+        <Link href="/" className="hidden md:flex items-center gap-2 border border-neutral-800 rounded-full px-4 py-2 hover:bg-neutral-900 transition-colors" title="Exit AI">
           <div className="w-1.5 h-1.5 bg-lime-400 rounded-full animate-pulse"></div>
           <span className="text-[10px]">Portfolio AI</span>
-        </div>
+          <X className="w-3 h-3 ml-1 text-neutral-400" />
+        </Link>
       </div>
     </header>
   );
