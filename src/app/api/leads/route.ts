@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Supabase insert error:', error);
       return NextResponse.json(
-        { success: false, error: 'Failed to create lead' },
+        { success: false, error: error.message || 'Failed to create lead', details: error },
         { status: 500 }
       );
     }
