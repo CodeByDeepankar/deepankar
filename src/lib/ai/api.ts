@@ -17,7 +17,13 @@ export async function sendPortfolioAIMessage(userMessage: string, conversationHi
     }
     
     const data = await response.json();
-    return data.response || data.message || data.text || data;
+    
+    // The backend returns { success: true, data: { reply: "..." } }
+    if (data.data && data.data.reply) {
+      return data.data.reply;
+    }
+    
+    return data.reply || data.response || data.message || data.text || JSON.stringify(data);
   } catch (error) {
     console.error("AI API Error:", error);
     throw error;

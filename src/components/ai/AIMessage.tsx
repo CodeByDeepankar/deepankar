@@ -21,8 +21,8 @@ export default function AIMessageNode({ message, isLast }: AIMessageProps) {
     return (
       <div className="w-full flex justify-end animate-in fade-in slide-in-from-right-4 duration-500">
         <div className="flex items-center gap-3 max-w-[80%] md:max-w-[60%]">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-full px-6 py-3 text-sm text-neutral-200 shadow-lg">
-            {message.content}
+          <div className="bg-neutral-900 border border-neutral-800 rounded-full px-6 py-3 text-sm text-neutral-200 shadow-lg whitespace-pre-wrap">
+            {typeof message.content === 'string' ? message.content : JSON.stringify(message.content)}
           </div>
           <div className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center flex-shrink-0 bg-neutral-950">
             <User className="w-4 h-4 text-neutral-500" />
@@ -50,8 +50,8 @@ export default function AIMessageNode({ message, isLast }: AIMessageProps) {
         {/* Response Content */}
         <div className="flex flex-col gap-6 pt-1 w-full">
           {/* AI Text Response */}
-          <div className="text-lg md:text-xl text-neutral-200 font-sans max-w-3xl leading-relaxed">
-            {message.content}
+          <div className="text-lg md:text-xl text-neutral-200 font-sans max-w-3xl leading-relaxed whitespace-pre-wrap">
+            {typeof message.content === 'string' ? message.content : JSON.stringify(message.content)}
           </div>
 
           {/* AI Visual Response based on Intent */}

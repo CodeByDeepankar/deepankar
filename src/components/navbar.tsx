@@ -14,7 +14,7 @@ import {
   IconPhoto,
   IconFlask,
   IconMail,
-  IconBot
+  IconCpu
 } from "@tabler/icons-react";
 
 const NAV_LINKS = [
@@ -23,7 +23,7 @@ const NAV_LINKS = [
   { name: "Work", href: "#work", icon: <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Gallery", href: "#gallery", icon: <IconPhoto className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Lab", href: "#lab", icon: <IconFlask className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { name: "AI", href: "/ai", icon: <IconBot className="h-full w-full text-lime-500" /> },
+  { name: "AI", href: "/ai", icon: <IconCpu className="h-full w-full text-lime-500" /> },
   { name: "Contact", href: "#contact", icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
 ];
 
