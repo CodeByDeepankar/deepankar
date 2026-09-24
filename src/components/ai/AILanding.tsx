@@ -4,8 +4,8 @@ import AIInput from "./AIInput";
 const QUICK_PROMPTS = [
   "Show my projects",
   "My skills",
-  "Hackathon journey",
-  "What am I building now?"
+  "View my services",
+  "Request a custom quote"
 ];
 
 interface AILandingProps {
