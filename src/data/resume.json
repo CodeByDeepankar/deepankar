@@ -328,6 +328,11 @@
   "gallery": [
     {
       "title": "New Memory",
+      "src": "/images/gallery/img-20251018-wa0005.jpg",
+      "category": "All"
+    },
+    {
+      "title": "New Memory",
       "src": "/images/gallery/gallery-12.jpg",
       "category": "All"
     },
