@@ -36,12 +36,12 @@ const BUSINESS_LINKS = [
 const PORTFOLIO_LINKS = [
   { name: "Home", href: "/portfolio", icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "About", href: "/portfolio#about", icon: <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { name: "Work", href: "/portfolio#work", icon: <IconCode className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Work", href: "/portfolio#projects", icon: <IconCode className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Experience", href: "/portfolio#experience", icon: <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Skills", href: "/portfolio#skills", icon: <IconTag className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "Gallery", href: "/portfolio#gallery", icon: <IconPhoto className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { name: "AI", href: "/ai", icon: <IconCpu className="h-full w-full text-lime-500" /> },
-  { name: "Resume", href: "/portfolio/resume", icon: <IconFileText className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { name: "Resume", href: "/Resume/Resume.pdf", icon: <IconFileText className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
 ];
 
 export default function Navbar() {

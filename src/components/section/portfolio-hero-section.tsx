@@ -38,7 +38,7 @@ export default function PortfolioHeroSection() {
           <FadeUp delay={0.3} className="flex flex-wrap items-center gap-4">
             <Magnetic>
               <Link 
-                href="#work" 
+                href="#projects" 
                 className="flex items-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-medium hover:bg-primary/90 transition-colors"
               >
                 View My Work <Icons.arrowRight className="size-4" />
@@ -46,7 +46,7 @@ export default function PortfolioHeroSection() {
             </Magnetic>
             <Magnetic>
               <a 
-                href="/resume.pdf" 
+                href="/Resume/Resume.pdf" 
                 target="_blank"
                 className="flex items-center gap-2 border border-border px-8 py-4 rounded-full font-medium hover:bg-muted transition-colors"
               >
