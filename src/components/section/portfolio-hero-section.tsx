@@ -4,13 +4,14 @@ import { SquigglyText } from "@/components/ui/squiggly-text";
 import Magnetic from "@/components/animations/magnetic";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
+import { ChromaticImage } from "@/components/ui/chromatic-image";
 
 export default function PortfolioHeroSection() {
   return (
     <section id="hero" className="w-full relative min-h-screen pt-32 pb-12 px-6 flex items-center bg-background z-10 overflow-hidden border-b border-border/50">
       <div className="container mx-auto max-w-7xl h-full flex flex-col md:flex-row items-center justify-between gap-12">
         
-        <div className="flex flex-col md:w-3/4 z-10 relative">
+        <div className="flex flex-col md:w-1/2 z-10 relative">
           <FadeUp>
             <div className="flex items-center gap-3 mb-8">
               <span className="w-1.5 h-6 bg-primary" />
@@ -44,12 +45,13 @@ export default function PortfolioHeroSection() {
               </Link>
             </Magnetic>
             <Magnetic>
-              <Link 
-                href="/portfolio/resume" 
+              <a 
+                href="/resume.pdf" 
+                target="_blank"
                 className="flex items-center gap-2 border border-border px-8 py-4 rounded-full font-medium hover:bg-muted transition-colors"
               >
                 Download Resume <Icons.download className="size-4" />
-              </Link>
+              </a>
             </Magnetic>
           </FadeUp>
 
@@ -68,6 +70,31 @@ export default function PortfolioHeroSection() {
             ))}
           </FadeUp>
         </div>
+
+        <div className="relative md:w-1/2 h-[65vh] md:h-[90vh] w-full mt-12 md:-mt-8 flex justify-end">
+          <FadeUp delay={0.2} className="w-full h-full relative">
+            <div className="absolute -top-8 md:-top-16 right-0 bottom-0 left-0 scale-105 md:scale-110 origin-bottom">
+               <ChromaticImage 
+                 src="/images/hero/portfolio_hero_bg.png"
+                 alt="Deepankar Portfolio"
+                 className="w-full h-full opacity-90 !bg-transparent"
+                 displacement={0.01}
+                 chromaticShift={0.002}
+                 zoom={0.05}
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
+               <div className="absolute inset-0 bg-gradient-to-l from-background/50 via-transparent to-background z-10 pointer-events-none" />
+            </div>
+            
+            {/* Background decorative text */}
+            <div className="absolute top-12 right-0 pointer-events-none opacity-[0.03] rotate-12 select-none">
+              <span className="text-8xl font-bold italic leading-none whitespace-pre">
+                Build<br/>Solve<br/>Improve<br/>Repeat
+              </span>
+            </div>
+          </FadeUp>
+        </div>
+
       </div>
     </section>
   );
