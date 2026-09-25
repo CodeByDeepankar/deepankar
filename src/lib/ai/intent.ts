@@ -14,7 +14,7 @@ export function detectIntent(message: string): AIIntent {
   
   if (lowerMsg.includes('project') || lowerMsg.includes('work') || lowerMsg.includes('built')) {
     // Check if they are asking about a specific project
-    if (lowerMsg.includes('tekkyz') || lowerMsg.includes('gyanaratna') || lowerMsg.includes('nidhisetu') || lowerMsg.includes('detail') || lowerMsg.includes('about tekkyz')) {
+    if (lowerMsg.includes('tekkyz') || lowerMsg.includes('gyanaratna') || lowerMsg.includes('nidhisetu')  || lowerMsg.includes('about tekkyz')) {
       return 'project-detail';
     }
     return 'projects';

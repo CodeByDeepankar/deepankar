@@ -47,7 +47,6 @@ const PORTFOLIO_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   const isPortfolio = pathname.startsWith("/portfolio");
   const currentLinks = isPortfolio ? PORTFOLIO_LINKS : BUSINESS_LINKS;
@@ -72,23 +71,28 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop Original Navbar - Hides when scrolled */}
+      {/* Persistent Top Header (Logo + Switcher) */}
       <header 
         className={cn(
-          "fixed top-0 inset-x-0 z-50 transition-all duration-500 pointer-events-none hidden md:block",
+          "fixed top-0 inset-x-0 z-50 transition-all duration-500 pointer-events-none",
           scrolled ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
         )}
       >
-        <div className="container mx-auto px-6 max-w-7xl pointer-events-auto py-8">
+        <div className="container mx-auto px-6 max-w-7xl pointer-events-auto py-6 md:py-8">
           <nav className="flex flex-col gap-6">
-            <div className="flex items-center justify-between bg-transparent">
+            <div className="flex flex-wrap md:flex-nowrap items-center justify-between bg-transparent gap-4 md:gap-12">
+              
               {/* Logo & Mode Switcher */}
-              <div className="flex items-center gap-12">
-                <Link href="/" className="text-2xl font-bold tracking-tighter shrink-0">
-                  D<span className="text-primary">.</span>
+              <div className="flex items-center gap-6 md:gap-12 w-full md:w-auto justify-between md:justify-start">
+                <Link href="/" className="shrink-0 flex items-center h-8 md:h-10">
+                  {isPortfolio ? (
+                    <img key="portfolio-logo" src="/images/logo/logo-icon.png" alt="Deepankar Portfolio" className="h-full w-auto object-contain max-w-[40px]" />
+                  ) : (
+                    <img key="business-logo" src="/images/logo/full_logo.png" alt="Deepankar.tech" className="h-full w-auto object-contain max-w-[150px] md:max-w-[200px]" />
+                  )}
                 </Link>
                 
-                <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase">
+                <div className="flex items-center gap-2 text-[10px] md:text-xs font-mono tracking-widest uppercase shrink-0">
                   <Link 
                     href="/" 
                     className={cn("transition-colors", !isPortfolio ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground")}
@@ -104,11 +108,11 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* Desktop CTA */}
               <Magnetic>
                 <Link 
                   href={isPortfolio ? "/#contact" : "/#contact"}
-                  className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-primary/50 text-primary px-6 py-3 rounded-full hover:bg-primary hover:text-black transition-colors font-bold"
+                  className="hidden md:flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-primary/50 text-primary px-6 py-3 rounded-full hover:bg-primary hover:text-black transition-colors font-bold shrink-0"
                 >
                   {isPortfolio ? "Work With Me" : "Start a Project"} <Icons.arrowRight className="size-3 -rotate-45" />
                 </Link>
@@ -116,7 +120,7 @@ export default function Navbar() {
             </div>
             
             {/* Desktop Links */}
-            <div className="flex items-center gap-8 pl-[4.5rem]">
+            <div className="hidden md:flex items-center gap-8 pl-[4.5rem]">
               {currentLinks.map((link) => (
                 <Link 
                   key={link.name} 
@@ -131,7 +135,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Floating Dock */}
+      {/* Floating Dock (Desktop + Mobile navigation) */}
       <FloatingDock
         items={dockItems}
         desktopClassName={cn(
