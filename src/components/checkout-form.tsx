@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -12,10 +13,12 @@ export default function CheckoutForm({ service }: { service: any }) {
   });
   
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage("");
     try {
       const res = await fetch("/api/orders", {
         method: "POST",
@@ -24,12 +27,20 @@ export default function CheckoutForm({ service }: { service: any }) {
           ...formData,
           service_slug: service.slug,
           amount: service.price,
-          currency: "INR" // Hardcoded for phase 7 mock
+          currency: "INR" 
         }),
       });
-      if (!res.ok) throw new Error("Failed");
+      
+      const data = await res.json();
+      
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit order");
+      }
+      
       setStatus("success");
-    } catch (err) {
+    } catch (err: any) {
+      console.error(err);
+      setErrorMessage(err.message || "Something went wrong.");
       setStatus("error");
     }
   };
@@ -108,7 +119,12 @@ export default function CheckoutForm({ service }: { service: any }) {
       </div>
 
       {status === "error" && (
-        <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+        <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-xl text-sm">
+          <strong>Error:</strong> {errorMessage}
+          <div className="text-xs mt-2 opacity-80">
+            Make sure you have created the "customers" and "orders" tables in your Supabase project!
+          </div>
+        </div>
       )}
 
       <button 
@@ -121,3 +137,4 @@ export default function CheckoutForm({ service }: { service: any }) {
     </form>
   );
 }
+

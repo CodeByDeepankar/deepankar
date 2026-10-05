@@ -59,9 +59,9 @@ export default function HeroSection() {
                 </Link>
               </Magnetic>
               <Magnetic>
-                <Link href="/Resume/Resume.pdf" target="_blank" className="flex items-center gap-2 text-muted-foreground hover:text-foreground px-2 py-2 md:px-4 md:py-4 text-[10px] md:text-sm font-mono tracking-widest uppercase transition-colors">
+                <a href="/Resume/Resume.pdf" target="_blank" className="flex items-center gap-2 text-muted-foreground hover:text-foreground px-2 py-2 md:px-4 md:py-4 text-[10px] md:text-sm font-mono tracking-widest uppercase transition-colors">
                   Download Resume <Icons.download className="size-3 md:size-4" />
-                </Link>
+                </a>
               </Magnetic>
             </div>
           </FadeUp>
